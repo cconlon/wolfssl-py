@@ -11,10 +11,10 @@ for PYBIN in /opt/python/*/bin; do
 done
 
 # Bundle external shared libraries into the wheels
-ls dist/ | grep wolfssl
-for whl in dist/wolfssl*.whl; do
-    auditwheel repair "$whl" -w tmpdist/
-done
+#ls dist/ | grep wolfssl
+#for whl in dist/wolfssl*.whl; do
+#    auditwheel repair "$whl" -w tmpdist/
+#done
 
 # restore dist
 rm -rf dist && mv tmpdist dist
