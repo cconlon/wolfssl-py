@@ -88,9 +88,9 @@ setup(
         u"Topic :: Software Development"
     ],
 
-    setup_requires=["cffi>=1.0.0"],
+    setup_requires=["cffi"],
     cffi_modules=["./src/wolfssl/_build_ffi.py:ffi"],
-    install_requires=["cffi>=1.0.0"],
+    install_requires=["cffi"],
     test_suite="tests",
     tests_require=["tox", "pytest"],
     cmdclass={"build_ext" : cffiBuilder}
