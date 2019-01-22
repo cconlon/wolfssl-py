@@ -45,16 +45,6 @@ with open("LICENSING.rst") as licensing_file:
                                                 licensing_file.read())
 
 
-# requirements
-install_requires = [
-    'cffi'
-]
-test_requires = [
-    'tox'
-    'pytest'
-]
-
-
 class cffiBuilder(build_ext, object):
 
     def build_extension(self, ext):
@@ -83,7 +73,6 @@ setup(
     package_dir={"":package_dir},
 
     zip_safe=False,
-    cffi_modules=["./src/wolfssl/_build_ffi.py:ffi"],
 
     keywords="wolfssl, wolfcrypt, security, cryptography",
     classifiers=[
@@ -99,8 +88,10 @@ setup(
         u"Topic :: Software Development"
     ],
 
-    install_requires=install_requires,
+    setup_requires=["cffi>=1.0.0"],
+    cffi_modules=["./src/wolfssl/_build_ffi.py:ffi"],
+    install_requires=["cffi>=1.0.0"],
     test_suite="tests",
-    tests_require=test_requires,
+    tests_require=["tox", "pytest"],
     cmdclass={"build_ext" : cffiBuilder}
 )
