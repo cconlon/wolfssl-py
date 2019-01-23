@@ -31,6 +31,7 @@ for PYVERSION in 2.7 3.4 3.5 3.6; do
     pip list
 
     ${PYTHONEXE} setup.py bdist_wheel
+    "${PYTHONBIN}/pip" install cffi
     "${PYTHONBIN}/pip" install -r requirements/test.txt
     set +e
     "${PYTHONBIN}/pip" uninstall -y wolfssl
