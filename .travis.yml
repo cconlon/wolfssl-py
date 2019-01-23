@@ -20,16 +20,16 @@ matrix:
 
     - python: '2.7'
       os: osx
-      osx_image: xcode9.4
+#      osx_image: xcode9.4
     - python: '3.4'
       os: osx
-      osx_image: xcode9.4
+#      osx_image: xcode9.4
     - python: '3.5'
       os: osx
-      osx_image: xcode9.4
+#      osx_image: xcode9.4
     - python: '3.6'
       os: osx
-      osx_image: xcode9.4
+#      osx_image: xcode9.4
 
 script:
   - if [ "${TRAVIS_OS_NAME:-}" == "linux" ]; then ./make/manylinux1/build_wheels.sh; fi
