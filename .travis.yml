@@ -1,5 +1,7 @@
 sudo: required
 language: python
+services:
+  - docker
 
 branches:
   only:
@@ -7,19 +9,27 @@ branches:
 
 matrix:
   include:
-    - dist: trusty
-      python: '2.7'
-      python: '3.4'
-      python: '3.5'
-      python: '3.6'
-      services:
-        - docker
-    - os: osx
+    - python: '2.7'
+      dist: trusty
+    - python: '3.4'
+      dist: trusty
+    - python: '3.5'
+      dist: trusty
+    - python: '3.6'
+      dist: trusty
+
+    - python: '2.7'
+      os: osx
       osx_image: xcode9.4
-      python: '2.7'
-      python: '3.4'
-      python: '3.5'
-      python: '3.6'
+    - python: '3.4'
+      os: osx
+      osx_image: xcode9.4
+    - python: '3.5'
+      os: osx
+      osx_image: xcode9.4
+    - python: '3.6'
+      os: osx
+      osx_image: xcode9.4
 
 script:
   - if [ "${TRAVIS_OS_NAME:-}" == "linux" ]; then ./make/manylinux1/build_wheels.sh; fi
