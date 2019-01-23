@@ -7,19 +7,23 @@ branches:
 
 matrix:
   include:
-    - python: '2.7'
-    - python: '3.4'
-    - python: '3.5'
-    - python: '3.6'
     - dist: trusty
+      python: '2.7'
+      python: '3.4'
+      python: '3.5'
+      python: '3.6'
       services:
         - docker
-      script:
-        - ./make/manylinux1/build_wheels.sh
     - os: osx
       osx_image: xcode9.4
-      script:
-        - ./make/osx/build_wheels.sh
+      python: '2.7'
+      python: '3.4'
+      python: '3.5'
+      python: '3.6'
+
+script:
+  - if [ "${TRAVIS_OS_NAME:-}" == "linux" ]; then ./make/manylinux1/build_wheels.sh; fi
+  - if [ "${TRAVIS_OS_NAME:-}" == "osx" ]; then ./make/osx/build_wheels.sh; fi
 
 install:
   - if [ "${TRAVIS_OS_NAME:-}" == "osx" ]; then ./make/osx/install_python.sh; fi
