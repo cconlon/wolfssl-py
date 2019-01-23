@@ -1,8 +1,8 @@
 sudo: required
 
-branches:
-  only:
-    - travisfix
+#branches:
+#  only:
+#    - travisfix
 
 matrix:
   include:
