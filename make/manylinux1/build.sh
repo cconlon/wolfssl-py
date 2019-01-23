@@ -5,10 +5,11 @@ set -e -x
 if [ -d dist ]; then mv dist tmpdist; fi
 
 # Compile wheels
-for PYBIN in /opt/python/*/bin; do
-    "${PYBIN}/python" setup.py bdist_wheel
-    rm -rf .eggs
-done
+#for PYBIN in /opt/python/*/bin; do
+#    "${PYBIN}/python" setup.py bdist_wheel
+#    rm -rf .eggs
+#done
+python setup.py bdist_wheel
 
 # Bundle external shared libraries into the wheels
 ls dist/ | grep wolfssl
@@ -20,9 +21,14 @@ done
 rm -rf dist && mv tmpdist dist
 
 # Install packages and test
-for PYBIN in /opt/python/*/bin/; do
-    "${PYBIN}/pip" install -r requirements/test.txt
-    "${PYBIN}/pip" install wolfssl --no-index -f dist
-    rm -rf tests/__pycache__
-    "${PYBIN}/py.test" tests
-done
+#for PYBIN in /opt/python/*/bin/; do
+#    "${PYBIN}/pip" install -r requirements/test.txt
+#    "${PYBIN}/pip" install wolfssl --no-index -f dist
+#    rm -rf tests/__pycache__
+#    "${PYBIN}/py.test" tests
+#done
+pip install -r requirements/test.txt
+pip install wolfssl --no-index -f dist
+rm -rf tests/__pycache__
+py.test tests
+
