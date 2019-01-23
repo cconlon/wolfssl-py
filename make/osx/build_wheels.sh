@@ -6,9 +6,15 @@ for PYVERSION in 2.7 3.4 3.5 3.6; do
     PYTHONEXE=${PYTHONBIN}/python${PYVERSION}
     export PATH="${PYTHONBIN}":$PATH
 
+    which python
+    python --version
+    which pip
+    pip --version
+    pip list
+
     # update pip for newer TLS support
-    curl https://bootstrap.pypa.io/get-pip.py | ${PYTHONEXE}
-    "${PYTHONBIN}/pip" install --upgrade pip
+    #curl https://bootstrap.pypa.io/get-pip.py | ${PYTHONEXE}
+    #"${PYTHONBIN}/pip" install --upgrade pip
 
     # update virtualenv and setuptools
     ${PYTHONEXE} -m pip install virtualenv
@@ -17,6 +23,12 @@ for PYVERSION in 2.7 3.4 3.5 3.6; do
 
     virtualenv -p ${PYTHONEXE} venv_${PYVERSION}
     . ./venv_${PYVERSION}/bin/activate
+
+    which python
+    python --version
+    which pip
+    pip --version
+    pip list
 
     ${PYTHONEXE} setup.py bdist_wheel
     "${PYTHONBIN}/pip" install -r requirements/test.txt
