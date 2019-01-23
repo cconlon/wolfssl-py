@@ -7,12 +7,8 @@ for PYVERSION in 2.7 3.4 3.5 3.6; do
     export PATH="${PYTHONBIN}":$PATH
 
     # update pip for newer TLS support
-    #curl https://bootstrap.pypa.io/get-pip.py | ${PYTHONEXE}
-    #"${PYTHONBIN}/pip" install --upgrade pip
-
-    brew update
-    brew install python2
-    brew install python3
+    curl https://bootstrap.pypa.io/get-pip.py | ${PYTHONEXE}
+    "${PYTHONBIN}/pip" install --upgrade pip
 
     which python
     python --version
